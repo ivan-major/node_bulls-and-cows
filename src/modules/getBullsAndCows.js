@@ -13,20 +13,29 @@
  * Example: { bulls: 1, cows: 2 }
  */
 function getBullsAndCows(userInput, numberToGuess) {
-  const userInputStr = String(userInput);
-  const numberToGuessStr = String(numberToGuess);
+  const guessDigits = String(userInput).split('');
+  const secretDigits = String(numberToGuess).split('');
   let bulls = 0;
   let cows = 0;
 
+  const remainingGuess = [];
+  const remainingSecret = [];
+
   for (let i = 0; i < 4; i++) {
-    if (userInputStr[i] === numberToGuessStr[i]) {
+    if (guessDigits[i] === secretDigits[i]) {
       bulls++;
-
-      continue;
+    } else {
+      remainingGuess.push(guessDigits[i]);
+      remainingSecret.push(secretDigits[i]);
     }
+  }
 
-    if (numberToGuessStr.includes(userInputStr[i])) {
+  for (const digit of remainingGuess) {
+    const index = remainingSecret.indexOf(digit);
+
+    if (index !== -1) {
       cows++;
+      remainingSecret.splice(index, 1);
     }
   }
 
