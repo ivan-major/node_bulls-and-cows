@@ -20,7 +20,10 @@ function startGame() {
         return;
       }
 
-      const { bulls } = getBullsAndCows(userInput, numberToGuess);
+      const { bulls, cows } = getBullsAndCows(userInput, numberToGuess);
+
+      // eslint-disable-next-line no-console
+      console.log(`Bulls: ${bulls}, Cows: ${cows}`);
 
       if (bulls === 4) {
         readline.close();

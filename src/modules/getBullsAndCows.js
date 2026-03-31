@@ -21,7 +21,11 @@ function getBullsAndCows(userInput, numberToGuess) {
   for (let i = 0; i < 4; i++) {
     if (userInputStr[i] === numberToGuessStr[i]) {
       bulls++;
-    } else if (numberToGuessStr.includes(userInputStr[i])) {
+
+      continue;
+    }
+
+    if (numberToGuessStr.includes(userInputStr[i])) {
       cows++;
     }
   }

@@ -12,18 +12,14 @@ function generateRandomNumber() {
   while (digits.size < 4) {
     const digit = Math.floor(Math.random() * 10);
 
+    if (digits.size === 0 && digit === 0) {
+      continue;
+    }
+
     digits.add(digit);
   }
 
-  const result = Array.from(digits);
-
-  if (result[0] === 0) {
-    const swapIndex = result.findIndex((digit) => digit !== 0);
-
-    [result[0], result[swapIndex]] = [result[swapIndex], result[0]];
-  }
-
-  return Number(result.join(''));
+  return Number(Array.from(digits).join(''));
 }
 
 module.exports = {
